@@ -1,0 +1,472 @@
+:root {
+  --verde-euskadi: #2b7a3f;
+  --rojo-euskadi: #e24343;
+  --blanco-suave: #fdfdfd;
+  --texto-oscuro: #111;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --sombra-suave: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Fondo tipo bandera + oveja difuminada */
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: var(--texto-oscuro);
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    var(--verde-euskadi) 0%,
+    var(--blanco-suave) 50%,
+    var(--rojo-euskadi) 100%
+  );
+  background-attachment: fixed;      /* FONDO FIJO */
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("oveja-euskadi.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.5;
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* Cabecera */
+header {
+  text-align: center;
+  padding: 2.2rem 1rem 0.8rem;
+  color: var(--texto-oscuro);
+}
+
+header h1 {
+  font-size: 3.2rem;
+  margin: 0 0 0.2rem;
+  letter-spacing: 0.08em;
+}
+
+header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Buscador */
+#buscador {
+  width: min(460px, 90%);
+  margin: 1.1rem auto 1.6rem;
+  display: block;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.18);
+  outline: none;
+  font-size: 1rem;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Botones filtro */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.6rem;
+}
+
+nav button {
+  border: none;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--verde-euskadi);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  transition: background 0.25s, color 0.25s, transform 0.15s,
+    box-shadow 0.15s;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+}
+
+nav button:hover {
+  transform: translateY(-1px);
+}
+
+nav button.active {
+  background: var(--verde-euskadi);
+  color: white;
+}
+
+/* Grid tarjetas */
+main {
+  max-width: 1100px;
+  margin: 0 auto 2.8rem;
+  padding: 0 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* MÁS ANCHAS */
+  gap: 1.8rem;
+}
+
+.receta-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(6px);
+  min-height: 260px;                 /* MÁS ALTAS */
+}
+
+.receta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+.receta-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.receta-nombre {
+  padding: 0.9rem 1.1rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.7rem 1rem 1.9rem;
+  color: #222;
+  font-size: 0.9rem;
+}
+
+#backBtn {
+  background: var(--rojo-euskadi);
+  border: none;
+  color: white;
+  padding: 0.55rem 1.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Modal */
+.modal-background {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 18px;
+  max-width: 760px;
+  width: 100%;
+  padding: 1.8rem 2.2rem 2.3rem;
+  position: relative;
+  color: var(--texto-oscuro);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.4rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: var(--rojo-euskadi);
+  cursor: pointer;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  max-height: 260px;
+  object-fit: cover;
+}
+
+.modal-section {
+  margin-bottom: 1rem;
+}
+
+.modal-section h3 {
+  margin: 0 0 0.3rem;
+}
+
+#modalIngredientes li,
+#modalPreparacion li {
+  margin-bottom: 0.35rem;
+}
+
+.tiempo {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* Mensaje sin resultados */
+.sin-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2.4rem;
+  }
+  .modal-content {
+    padding: 1.3rem 1.2rem 1.8rem;
+  }
+}
+
+/* Layout: grid de recetas a la izquierda + panel favoritos a la derecha */
+.layout {
+  max-width: 1280px;
+  margin: 0 auto 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr 300px; /* derecha: panel fijo */
+  gap: 1.2rem;
+  padding: 0 1rem;
+}
+
+/* Main: desplazado un poco a la izquierda */
+main {
+  transform: translateX(-10px); /* mueve ligeramente a la izquierda */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+}
+
+/* Tarjeta receta */
+.receta-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(6px);
+  min-height: 260px;
+  position: relative;
+}
+
+.receta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+.receta-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.receta-nombre {
+  padding: 0.9rem 2.6rem 1.1rem 1.1rem; /* más hueco a la derecha para la estrella */
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Estrella de favoritos en las tarjetas */
+.star-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffd447;
+  background: rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.star-btn:hover {
+  transform: scale(1.06);
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.star-btn.activo {
+  color: #fff04d;
+  background: #d1a800;
+}
+
+/* Alergenos: circulitos pequeños */
+.alergenos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 10px 10px 10px;
+  justify-content: flex-start;
+}
+
+.badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.badge.gluten { background: #c46a2f; }
+.badge.lacteos { background: #5b8ee0; }
+.badge.huevo { background: #d8b100; color: #000; }
+.badge.pescado { background: #2f9ea3; }
+.badge.marisco { background: #b24b5f; }
+.badge.frutoscascara { background: #7a5a3a; }
+.badge.soja { background: #46a049; }
+
+/* Aside de favoritos */
+#favoritosPanel {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: var(--sombra-suave);
+  padding: 0.9rem 0.9rem 1rem;
+  backdrop-filter: blur(6px);
+  height: fit-content;
+  position: sticky;
+  top: 12px;
+}
+
+#favoritosPanel h3 {
+  margin: 0.3rem 0 0.6rem;
+  font-size: 1.05rem;
+}
+
+#listaFavoritos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+#listaFavoritos li {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#listaFavoritos img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.fav-remove {
+  border: none;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 10px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* Meta del modal: alérgenos + estrella */
+.modal-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0.3rem 0 0.4rem;
+}
+
+.modal-content .star-btn {
+  position: static;
+  background: #ffd447;
+  color: #8a6000;
+}
+
+.modal-content .star-btn.activo {
+  background: #d1a800;
+  color: #fff;
+}
+
+/* Responsivo layout 1 columna */
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  #favoritosPanel {
+    position: static;
+    margin-top: 0.8rem;
+  }
+  main {
+    transform: none;
+  }
+}
+
+.alergenos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Si quieres colores distintos por alérgeno */
+.badge.gluten { background: #ffe7ba; }
+.badge.lacteos { background: #e0f0ff; }
+.badge.huevo { background: #fff3c4; }
+.badge.pescado { background: #e0f7ff; }
+.badge.marisco { background: #ffe0e0; }
+.badge.frutoscascara { background: #f5e0ff; }
+.badge.soja { background: #e4f5dc; }
