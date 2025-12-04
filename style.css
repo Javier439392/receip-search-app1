@@ -1,6 +1,6 @@
 :root {
-  --verde-euskadi: #2b7a3f;
-  --rojo-euskadi: #e24343;
+  --verde-euskadi: #0b660e;
+  --rojo-euskadi: #ff0000;
   --blanco-suave: #fdfdfd;
   --texto-oscuro: #111;
   --card-bg: rgba(255, 255, 255, 0.92);
@@ -135,9 +135,12 @@ main {
 
 .receta-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
+  background: #00000010; /* opcional, un fondito suave debajo */
 }
+
 
 .receta-nombre {
   padding: 0.9rem 1.1rem 1.1rem;
@@ -187,11 +190,25 @@ footer {
   position: relative;
   color: var(--texto-oscuro);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  height: auto;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
 }
+
 
 .modal-content h2 {
   margin-top: 0;
   margin-bottom: 0.8rem;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .modal-close {
@@ -205,12 +222,16 @@ footer {
 }
 
 .modal-img {
+  display: block;
   width: 100%;
+  height: auto;
+  max-height: 70vh;   /* evita que se salga de la pantalla */
+  object-fit: contain !important;  /* nunca recorta */
   border-radius: 12px;
   margin-bottom: 1.2rem;
-  max-height: 260px;
-  object-fit: cover;
 }
+
+
 
 .modal-section {
   margin-bottom: 1rem;
@@ -235,16 +256,6 @@ footer {
   grid-column: 1 / -1;
   text-align: center;
   font-weight: 600;
-}
-
-/* Responsivo */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2.4rem;
-  }
-  .modal-content {
-    padding: 1.3rem 1.2rem 1.8rem;
-  }
 }
 
 /* Layout: grid de recetas a la izquierda + panel favoritos a la derecha */
@@ -336,6 +347,18 @@ main {
   justify-content: flex-start;
 }
 
+.lang-toggle {
+  margin-top: 0.6rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--verde-euskadi);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+}
+
 .badge {
   width: 22px;
   height: 22px;
@@ -356,16 +379,19 @@ main {
 .badge.soja { background: #46a049; }
 
 /* Aside de favoritos */
-#favoritosPanel {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 16px;
-  box-shadow: var(--sombra-suave);
-  padding: 0.9rem 0.9rem 1rem;
-  backdrop-filter: blur(6px);
-  height: fit-content;
-  position: sticky;
-  top: 12px;
+#listaFavoritos li {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  
 }
+
 
 #favoritosPanel h3 {
   margin: 0.3rem 0 0.6rem;
@@ -389,7 +415,10 @@ main {
   border-radius: 12px;
   padding: 6px 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+
 }
+
 
 #listaFavoritos img {
   width: 44px;

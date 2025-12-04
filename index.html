@@ -9,55 +9,71 @@
 </head>
 <body>
 
-<header>
-  <h1>BASQUE CUISINE</h1>
-  <p>Select a dish to view the full recipe</p>
-</header>
+  <header>
+    <h1>BASQUE CUISINE</h1>
+    <p>Select a dish to view the full recipe</p>
+    <button id="langToggle" class="lang-toggle" aria-label="Cambiar idioma">
+  ES / EN
+</button>
+  </header>
 
-<input type="text" id="buscador" placeholder="Buscar receta…" aria-label="Buscar receta" />
+  <input
+    type="text"
+    id="buscador"
+    placeholder="Buscar receta…"
+    aria-label="Buscar receta"
+  />
 
-<nav>
-  <button id="todos" class="active">Todos</button>
-  <button id="frios">Platos fríos</button>
-  <button id="calientes">Platos calientes</button>
-</nav>
+  <nav>
+    <button id="todos" class="active">Todos</button>
+    <button id="frios">Platos fríos</button>
+    <button id="calientes">Platos calientes</button>
+  </nav>
 
-<div class="layout">
-  <main id="recetas">
-    <!-- Cards desde app.js -->
-  </main>
+  <div class="layout">
+    <main id="recetas">
+      <!-- Cards desde app.js -->
+    </main>
 
-  <aside id="favoritosPanel" aria-label="Favoritos">
-    <h3>Favoritos</h3>
-    <ul id="listaFavoritos"></ul>
-  </aside>
-</div>
-
-<!-- Modal -->
-<div id="modal" class="modal-background" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
-  <div class="modal-content" role="document">
-    <span id="modal-close" class="modal-close" aria-label="Cerrar">&times;</span>
-    <h2 id="modalTitle"></h2>
-    <img id="modalImg" src="" alt="" class="modal-img" />
-    <div class="modal-meta">
-      <div id="modalAlergenos" class="alergenos"></div>
-      <button id="modalFavBtn" class="star-btn" aria-label="Añadir a favoritos">★</button>
-    </div>
-    <div class="modal-section">
-      <h3>Ingredientes</h3>
-      <ul id="modalIngredientes"></ul>
-    </div>
-    <div class="modal-section">
-      <h3>Preparación paso a paso</h3>
-      <ol id="modalPreparacion"></ol>
-    </div>
-    <p class="tiempo">
-      <strong>Tiempo de cocción:</strong>
-      <span id="modalTiempo"></span>
-    </p>
+    <aside id="favoritosPanel" aria-label="Favoritos">
+      <h3>Favoritos</h3>
+      <ul id="listaFavoritos"></ul>
+    </aside>
   </div>
-</div>
 
-<script src="app.js"></script>
+  <!-- Modal -->
+  <div
+    id="modal"
+    class="modal-background"
+    aria-hidden="true"
+    role="dialog"
+    aria-labelledby="modalTitle"
+    aria-modal="true"
+  >
+    <div class="modal-content" role="document">
+      <span id="modal-close" class="modal-close" aria-label="Cerrar">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImg" src="" alt="" class="modal-img" />
+      <div class="modal-meta">
+        <div id="modalAlergenos" class="alergenos"></div>
+        <button id="modalFavBtn" class="star-btn" aria-label="Añadir a favoritos">★</button>
+      </div>
+      <div class="modal-section">
+        <h3>Ingredientes</h3>
+        <ul id="modalIngredientes"></ul>
+      </div>
+      <div class="modal-section">
+        <h3>Preparación paso a paso</h3>
+        <ol id="modalPreparacion"></ol>
+      </div>
+      <p class="tiempo">
+        <strong>Tiempo de cocción:</strong>
+        <span id="modalTiempo"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- MUY IMPORTANTE: el script va al final del body -->
+  <script src="app.js"></script>
 </body>
 </html>
